@@ -1,0 +1,22 @@
+html, body, .login {
+    height: 100%;
+}
+
+.nav-wrapper ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.home > a{
+    width: 100%;
+    margin: 1rem 0px;
+    font-size: 2rem;
+    text-transform: lowercase;
+}
