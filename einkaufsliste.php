@@ -2,27 +2,20 @@
 <?php include 'templates/nav.php' ?>
 <?php require_once('inc/Einkaufsliste.php') ?>
 
-    <div class="container <?php PageTitle::getPageTitle() ?>">
-        <div class="collection">
-            <?php $list = Einkaufsliste::getAllEinkaufsliste();
-            foreach ($list as $value => $l) { ?>
-                <?php if ($l->status == 'active') { ?>
-                    <a href="#!" class="collection-item ">
-                        <label>
-                            <input type="checkbox" checked="checked"/>
-                            <span><?php echo $l->name ?></span>
-                        </label>
-                    </a>
-                <?php } else { ?>
-                    <a href="#!" class="collection-item ">
-                        <label>
-                            <input type="checkbox"/>
-                            <span><?php echo $l->name ?></span>
-                        </label>
-                    </a>
-                <?php } ?>
-
-            <?php } ?>
+    <div class="container einkaufsliste">
+        <div class="addItem">
+            <form class="row" action="php/insert.php" method="post">
+                <div class="input-field col s11">
+                    <input type="text" id="autocomplete-Name" class="autocomplete" name="Name">
+                    <label for="autocomplete-Name">Produkt</label>
+                </div>
+                <div class="input-field col s1">
+                    <button class="btn waves-effect waves-light" type="submit" name="insertEList">
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
         </div>
+        <?php include 'Module/liste.php'?>
     </div>
 <?php include 'templates/bottom.php' ?><?php

@@ -20,3 +20,19 @@ html, body, .login {
     font-size: 2rem;
     text-transform: lowercase;
 }
+
+.einkaufsliste{
+    margin-top: 2rem;
+}
+
+.collection{
+    border: 0px;
+}
+
+.collection .collection-item:last-child{
+    border-bottom: 1px solid #e0e0e0
+}
+
+.einkaufsliste .collection ul{
+    margin: 0px auto;
+}

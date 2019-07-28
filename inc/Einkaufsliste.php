@@ -19,6 +19,22 @@ class Einkaufsliste
     }
 
     /*methods*/
+    public function getEinkaufsliste($id){
+        $pdo = connect();
+        $query = 'SELECT * FROM einkaufsliste WHERE ID = :ID';
+        $statement = $pdo->prepare($query);
+        if(!$statement->bindValue(':ID', $id)){
+            die($statement->errorInfo());
+        }
+        if (!$statement->execute()){
+            die($statement->errorInfo());
+        }
+
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return new Einkaufsliste($data['ID'], $data['Name'], $data['Status']);
+    }
+
     public function getAllEinkaufsliste(){
         $pdo = connect();
         $query = 'SELECT * FROM einkaufsliste';
@@ -35,10 +51,10 @@ class Einkaufsliste
         return  $list;
     }
 
-    public function delete(){
+    public function delete($name){
         $pdo = connect();
-        $query = 'DELETE FROM einkaufsliste WHERE ID = :ID';
-        $values = array("ID" => $this->id);
+        $query = 'DELETE FROM einkaufsliste WHERE Name = :Name';
+        $values = array("Name" => $name);
         $statement = $pdo->prepare($query);
         if (!$statement->execute($values)) {
             die($statement->errorInfo());
@@ -63,6 +79,7 @@ class Einkaufsliste
         if(!$statement->execute($values)) {
             die($statement->errorInfo());
         }
+        return Einkaufsliste::getEinkaufsliste($pdo->lastInsertId());
         return User::getUser($pdo->lastInsertId());
     }
 
